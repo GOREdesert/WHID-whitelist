@@ -1,0 +1,833 @@
+                         --// UILibrary //--
+                         UILibrary = loadstring(game:HttpGet("https://pastebin.com/raw/jb01avXb"))()
+
+                         --// UI tabs //--
+           MainUI = UILibrary.Load("nature #1 streamable")
+           Page1 = MainUI.AddPage("Lock")
+           
+           Page2 = MainUI.AddPage("AA")
+           
+           Page3 = MainUI.AddPage("DESYNC")
+           
+           Page4 = MainUI.AddPage("resolver")
+           
+           Page5 = MainUI.AddPage("frame ban")
+           
+           Page6 = MainUI.AddPage("fake ban")
+           
+           Page7 = MainUI.AddPage("Aim Viewer")
+           
+           Page8 = MainUI.AddPage("info")
+           
+           
+                 --// Close, Open (not working yet!!) //--
+           
+           if key == "m" then
+               if Closed == true then
+                   Closed = false
+                       game.CoreGui["Gui"].Enabled = false
+                   else
+                       Closed = true
+                           game.CoreGui["Gui"].Enabled = true
+                       end
+                   end
+           
+                        --// Theme labels //--
+           Page1.AddLabel("Streamables")
+           Page2.AddLabel("NON-Jumpable AntiLock(s)")
+           Page3.AddLabel("Desync(s)")
+           Page4.AddLabel("antilock/desync resolver")
+           Page5.AddLabel("frame/false ban script(s)")
+           Page6.AddLabel("fake selfban (you just get kicked)")
+           Page7.AddLabel("AimViewer(s)")
+           Page8.AddLabel("hint: press F9 after using a button")
+           Page8.AddLabel("owner")
+           
+                        --// Buttons, functions //--
+           
+           
+                        --///[INFO TAB]///
+           
+           --Fallen's socials [OWNER]
+           Page8.AddButton("Fallen's socials", function()
+               print("")
+               print("")
+               print("")
+               print("]--FALLEN'S SOCIALS")
+               print("DISCORD; fallen#0017")
+               print("TIKTOK; @.fallenangle")
+               print("ROBLOX; N/A (removed for secure reasons)")
+               print("]-- end")
+           end)
+           
+           Page8.AddLabel("friends/helper")
+           
+           -- ImmortalityLord's socials [FRIEND/HELPER]
+           Page8.AddButton("ImmortalityLord's socials", function()
+               print("")
+               print("")
+               print("")
+               print("]--IMMORTALITYLORD'S SOCIALS")
+               print("DISCORD; ImmortalityLord#0001")
+               print("TIKTOK; N/A (privat)")
+               print("ROBLOX; N/A (removed for secure reasons)")
+               print("]-- end")
+           end)
+           
+           -- Dummy's socials [FRIEND/HELPER]
+           Page8.AddButton("Dummy's socials", function()
+               print("")
+               print("")
+               print("")
+               print("]--DUMMY'S SOCIALS")
+               print("DISCORD; Dummy#8780")
+               print("TIKTOK; N/A (privat)")
+               print("ROBLOX; N/A (removed for secure reasons)")
+               print("]-- end")
+           end)
+           
+                             --///[LOCK TAB]///
+           
+           
+                             --!!!STREAMABLES!!!--
+           --Streamable 
+           Page1.AddButton("Streamable V1", function()
+               local hotkey = "t" -- toggle key
+               local mouse = game.Players.LocalPlayer:GetMouse()
+               
+               
+               
+               mouse.KeyDown:Connect(function(key)
+               if key == hotkey then
+               if getgenv().ValiantAimHacks.SilentAimEnabled == true then
+                getgenv().ValiantAimHacks.SilentAimEnabled = false
+               else
+               getgenv().ValiantAimHacks.SilentAimEnabled = true
+               end
+               end
+               end)
+               
+               
+               -- // Services
+               local Players = game:GetService("Players")
+               
+               -- // Vars
+               local LocalPlayer = Players.LocalPlayer
+               local accomidationfactor = 0.12567724521
+               
+               -- // Silent Aim Module
+               local SilentAim = loadstring(game:HttpGet("https://pastebin.com/raw/2f0mGbMP"))()
+               SilentAim.TeamCheck = false
+               -- // Metatable vars
+               local mt = getrawmetatable(game)
+               local backupindex = mt.__index
+               setreadonly(mt, false)
+               
+               -- // Check if player is down
+               SilentAim.checkSilentAim = function()
+                   local checkA = (SilentAim.SilentAimEnabled == true and SilentAim.Selected ~= LocalPlayer)
+                   local playerCharacter = SilentAim.Selected.Character
+                   local daHood = (playerCharacter.BodyEffects["K.O"].Value == false or playerCharacter:FindFirstChild("GRABBING_CONSTRAINT") ~= nil)
+               
+                   return (checkA and daHood)
+               end
+               
+               -- // Hook
+               mt.__index = newcclosure(function(t, k)
+                   if (t:IsA("Mouse") and (k == "Hit")) then
+                       print(t, k)
+                       local CPlayer = SilentAim.Selected
+                       if (SilentAim.checkSilentAim()) then
+                           if (CPlayer.Character:FindFirstChild("HumanoidRootPart")) then
+                               return {p=(CPlayer.Character.HumanoidRootPart.CFrame.p+(CPlayer.Character.HumanoidRootPart.Velocity*accomidationfactor))}
+                           end
+                       end
+                   end
+                   return backupindex(t, k)
+               end)
+               
+               -- // Revert
+               setreadonly(mt, true)
+               getgenv().ValiantAimHacks.FOV = 9.2
+           
+           -- // Notification, Info
+               local function callback(Text)
+                   if Text == "k" then
+                       print(".gg/Nature lollll")
+                   end
+               end
+               
+               
+               
+               
+               
+               game.StarterGui:SetCore("SendNotification", {
+                   Title = "Streamable V1";
+                   Text = "Hotkey; t  Fov; 9.2";
+                   Icon = "";
+                   Duration = 10;
+                   Button1 = "k";
+                   Callback = NotificationBindable;
+               })
+           end)
+           
+           --Streamable v2
+           
+           Page1.AddButton("Streamable V2", function()
+           -- // Dependencies
+           local Aiming = loadstring(game:HttpGet("https://pastebin.com/raw/fKyW0Wfx"))()
+           Aiming.TeamCheck(false)
+           
+           -- // Services
+           local Workspace = game:GetService("Workspace")
+           local Players = game:GetService("Players")
+           local RunService = game:GetService("RunService")
+           local UserInputService = game:GetService("UserInputService")
+           
+           -- // Vars
+           local LocalPlayer = Players.LocalPlayer
+           local Mouse = LocalPlayer:GetMouse()
+           local CurrentCamera = Workspace.CurrentCamera
+           
+           local DaHoodSettings = {
+               SilentAim = true,
+               AimLock = true,
+               Prediction = 0.165,
+               AimLockKeybind = Enum.KeyCode.E
+           }
+           getgenv().DaHoodSettings = DaHoodSettings
+           
+           -- // Overwrite to account downed
+           function Aiming.Check()
+               -- // Check A
+               if not (Aiming.Enabled == true and Aiming.Selected ~= LocalPlayer and Aiming.SelectedPart ~= nil) then
+                   return false
+               end
+           
+               -- // Check if downed
+               local Character = Aiming.Character(Aiming.Selected)
+               local KOd = Character:WaitForChild("BodyEffects")["K.O"].Value
+               local Grabbed = Character:FindFirstChild("GRABBING_CONSTRAINT") ~= nil
+           
+               -- // Check B
+               if (KOd or Grabbed) then
+                   return false
+               end
+           
+               -- //
+               return true
+           end
+           
+           -- // Hook
+           local __index
+           __index = hookmetamethod(game, "__index", function(t, k)
+               -- // Check if it trying to get our mouse's hit or target and see if we can use it
+               if (t:IsA("Mouse") and (k == "Hit" or k == "Target") and Aiming.Check()) then
+                   -- // Vars
+                   local SelectedPart = Aiming.SelectedPart
+           
+                   -- // Hit/Target
+                   if (DaHoodSettings.SilentAim and (k == "Hit" or k == "Target")) then
+                       -- // Hit to account prediction
+                       local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
+           
+                       -- // Return modded val
+                       return (k == "Hit" and Hit or SelectedPart)
+                   end
+               end
+           
+               -- // Return
+               return __index(t, k)
+           end)
+           
+           -- // Aimlock
+           RunService:BindToRenderStep("AimLock", 0, function()
+               if (DaHoodSettings.AimLock and Aiming.Check() and UserInputService:IsKeyDown(DaHoodSettings.AimLockKeybind)) then
+                   -- // Vars
+                   local SelectedPart = Aiming.SelectedPart
+           
+                   -- // Hit to account prediction
+                   local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
+           
+                   -- // Set the camera to face towards the Hit
+                   CurrentCamera.CFrame = CFrame.lookAt(CurrentCamera.CFrame.Position, Hit.Position)
+               end
+           end)
+           
+           -- // Notification, Info
+           local function callback(Text)
+               if Text == "k" then
+                   print(".gg/Nature lollll")
+               end
+           end
+           
+           
+           
+           
+           
+           game.StarterGui:SetCore("SendNotification", {
+               Title = "Streamable V2";
+               Text = "Hotkey; E  Fov; N/A";
+               Icon = "";
+               Duration = 10;
+               Button1 = "k";
+               Callback = NotificationBindable;
+           })
+           end)
+           
+           --Streamable v3
+           
+           Page1.AddButton("Streamable V3", function()
+               loadstring(game:HttpGet("https://pastebin.com/raw/SbtCNZg7"))()
+               DaHoodSettings.Prediction = 0.1437
+               Aiming.TargetPart = {"Head", "UpperTorso", "LowerTorso", "HumanoidRootPart", "RightFoot", "LeftFoot"}
+               Aiming.FOV = 9.4
+               Aiming.FOVSides = 25
+               Aiming.HitChance = 110
+               Aiming.ShowFOV = false
+           
+               -- // Notification, Info
+           local function callback(Text)
+               if Text == "k" then
+                   print(".gg/Nature lollll")
+               end
+           end
+           
+           
+           
+           
+           
+           game.StarterGui:SetCore("SendNotification", {
+               Title = "Streamable V3";
+               Text = "Hotkey; N/A  Fov; 9.4";
+               Icon = "";
+               Duration = 10;
+               Button1 = "k";
+               Callback = NotificationBindable;
+           })
+           end)
+           
+           --Streamable v4
+           
+           Page1.AddButton("Streamable V4", function()
+              loadstring(game:HttpGet("https://raw.githubusercontent.com/topillesrevenge/Streamable-Silent/main/Main"))()
+              DaHoodSettings.Prediction = 0.121
+              Aiming.TargetPart = {"Head", "LeftHand", "RightHand", "LeftLowerArm", "RightLowerArm", "LeftUpperArm", "RightUpperArm", "LeftFoot", "LeftLowerLeg", "UpperTorso", "HumanoidRootPart", "LeftUpperLeg", "RightLowerLeg", "RightFoot", "LowerTorso"}
+              Aiming.FOV = 25
+              Aiming.FOVSides = 25
+              Aiming.HitChance = 400
+              Aiming.ShowFOV = false
+           
+                  -- // Notification, Info
+           local function callback(Text)
+               if Text == "k" then
+                   print(".gg/Nature lollll")
+               end
+           end
+           
+           
+           
+           
+           
+           game.StarterGui:SetCore("SendNotification", {
+               Title = "Streamable V4";
+               Text = "Hotkey; N/A  Fov; 25";
+               Icon = "";
+               Duration = 10;
+               Button1 = "k";
+               Callback = NotificationBindable;
+           })
+           end)
+           
+           --Steamable v5
+           
+           Page1.AddButton("Streamable V5", function()
+           -- da hood private silent aim
+           local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/strongprime/f/main/8%20fov",true))()
+           Aiming.TeamCheck(false)
+           
+           local Workspace = game:GetService("Workspace")
+           local Players = game:GetService("Players")
+           local RunService = game:GetService("RunService")
+           local UserInputService = game:GetService("UserInputService")
+           
+           local LocalPlayer = Players.LocalPlayer
+           local Mouse = LocalPlayer:GetMouse()
+           local CurrentCamera = Workspace.CurrentCamera
+           
+           local DaHoodSettings = {
+               SilentAim = true,
+               AimLock = false,
+               Prediction = 0.14,
+               AimLockKeybind = Enum.KeyCode.E
+           }
+           getgenv().DaHoodSettings = DaHoodSettings
+           
+           function Aiming.Check()
+               if not (Aiming.Enabled == true and Aiming.Selected ~= LocalPlayer and Aiming.SelectedPart ~= nil) then
+                   return false
+               end
+           
+               local Character = Aiming.Character(Aiming.Selected)
+               local KOd = Character:WaitForChild("BodyEffects")["K.O"].Value
+               local Grabbed = Character:FindFirstChild("GRABBING_CONSTRAINT") ~= nil
+           
+               if (KOd or Grabbed) then
+                   return false
+               end
+           
+               return true
+           end
+           
+           local __index
+           __index = hookmetamethod(game, "__index", function(t, k)
+               if (t:IsA("Mouse") and (k == "Hit" or k == "Target") and Aiming.Check()) then
+                   local SelectedPart = Aiming.SelectedPart
+           
+                   if (DaHoodSettings.SilentAim and (k == "Hit" or k == "Target")) then
+                       local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
+           
+                       return (k == "Hit" and Hit or SelectedPart)
+                   end
+               end
+           
+               return __index(t, k)
+           end)
+           
+           RunService:BindToRenderStep("AimLock", 0, function()
+               if (DaHoodSettings.AimLock and Aiming.Check() and UserInputService:IsKeyDown(DaHoodSettings.AimLockKeybind)) then
+                   local SelectedPart = Aiming.SelectedPart
+           
+                   local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
+           
+                   CurrentCamera.CFrame = CFrame.lookAt(CurrentCamera.CFrame.Position, Hit.Position)
+               end
+               end)
+           
+                      -- // Notification, Info
+           local function callback(Text)
+               if Text == "k" then
+                   print(".gg/Nature lollll")
+               end
+           end
+           
+           
+           
+           
+           
+           game.StarterGui:SetCore("SendNotification", {
+               Title = "Streamable V5";
+               Text = "Hotkey; E Fov; 20";
+               Icon = "";
+               Duration = 10;
+               Button1 = "k";
+               Callback = NotificationBindable;
+           })
+           end)
+           
+                          --///[ANTILOCK (AA) TAB]///
+           
+           --lol .gg/Nature i guess
+           
+           --Antilock (PAID)
+           
+           Page2.AddButton("AntiLock [PAID]", function()
+               local Toggled = false
+               local KeyCode = 'x'
+               
+               
+               function AA()
+                   local oldVelocity = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+                   game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(oldVelocity.X, -70, oldVelocity.Z)
+                   game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(oldVelocity.X, oldVelocity.Y, oldVelocity.Z)
+                   game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(oldVelocity.X, -70, oldVelocity.Z)
+                   game.Players.LocalPlayer.Character.Humanoid.HipHeight = 4.14
+               end
+               
+               game:GetService('UserInputService').InputBegan:Connect(function(Key)
+                   if Key.KeyCode == Enum.KeyCode[KeyCode:upper()] and not game:GetService('UserInputService'):GetFocusedTextBox() then
+                       if Toggled then
+                           Toggled = false
+                           game.Players.LocalPlayer.Character.Humanoid.HipHeight = 1.85
+               
+                       elseif not Toggled then
+                           Toggled = true
+               
+                           while Toggled do
+                               AA()
+                               task.wait()
+                           end
+                       end
+                   end
+               end)
+           
+                          -- // Notification, Info
+           local function callback(Text)
+               if Text == "k" then
+                   print(".gg/Nature lollll")
+               end
+           end
+           
+           
+           
+           
+           
+           game.StarterGui:SetCore("SendNotification", {
+               Title = "AntiLock [PAID]";
+               Text = "Hotkey; X";
+               Icon = "";
+               Duration = 10;
+               Button1 = "k";
+               Callback = NotificationBindable;
+           })
+           end)
+           
+           --AntiLock [underground]
+           
+           Page2.AddButton("AntiLock [UNDERGROUND]", function()
+               local Toggled = true
+               local KeyCode = 'v'
+               
+               
+               function AA()
+                   local oldVelocity = game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity
+                   game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(oldVelocity.X, -70, oldVelocity.Z)
+                   game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(oldVelocity.X, oldVelocity.Y, oldVelocity.Z)
+                   game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(oldVelocity.X, -70, oldVelocity.Z)
+                   game.Players.LocalPlayer.Character.Humanoid.HipHeight = 4.14
+               end
+               
+               game:GetService('UserInputService').InputBegan:Connect(function(Key)
+                   if Key.KeyCode == Enum.KeyCode[KeyCode:upper()] and not game:GetService('UserInputService'):GetFocusedTextBox() then
+                       if Toggled then
+                           Toggled = false
+                           game.Players.LocalPlayer.Character.Humanoid.HipHeight = 1.85
+               
+                       elseif not Toggled then
+                           Toggled = true
+               
+                           while Toggled do
+                               AA()
+                               task.wait()
+                           end
+                       end
+                   end
+               end)
+           
+                              -- // Notification, Info
+           local function callback(Text)
+               if Text == "k" then
+                   print(".gg/Nature lollll")
+               end
+           end
+           
+           
+           
+           
+           
+           game.StarterGui:SetCore("SendNotification", {
+               Title = "AntiLock [UNDERGROUND]";
+               Text = "Hotkey; V" ;
+               Icon = "";
+               Duration = 10;
+               Button1 = "k";
+               Callback = NotificationBindable;
+           })
+           end)
+           
+           
+                    --[DESYNC TAB]--
+           
+           Page3.AddButton("Desync V1", function()
+               local P1000ToggleKey = "x" 
+               
+               
+               --// Services
+               checkcaller = checkcaller
+               newcclosure = newcclosure
+               hookmetamethod = hookmetamethod
+               
+               local PastedSources = false
+               local BruhXD = game:GetService("RunService")
+               local LocalPlayer = game:GetService("Players").LocalPlayer
+               local Bullshit = LocalPlayer:GetMouse()
+               
+               
+               --// Toggles
+               Bullshit.KeyDown:Connect(function(SayNoToOblivity)
+                   if SayNoToOblivity == string.lower(P1000ToggleKey) then
+                       pcall(function()
+                           if PastedSources == false then
+                               PastedSources = true
+                               print("Enabled P1000")
+                           elseif PastedSources == true then
+                               PastedSources = false
+                               print("Disabled P1000")
+                           end
+                       end)
+                   end
+               end)
+               
+               Bullshit.KeyDown:Connect(function(SayNoToOblivity)
+                   if SayNoToOblivity == ("=") then
+                       game:GetService("TeleportService"):Teleport(game.PlaceId, LocalPlayer) 
+                   end
+               end)
+               
+               
+               --// Desync_Source
+               function RandomNumberRange(a)
+                   return math.random(-a * 100, a * 100) / 100
+               end
+               
+               function RandomVectorRange(a, b, c)
+                   return Vector3.new(RandomNumberRange(a), RandomNumberRange(b), RandomNumberRange(c))
+               end
+               
+               
+               local DesyncTypes = {}
+               BruhXD.Heartbeat:Connect(function()
+                   if PastedSources == true then
+                       DesyncTypes[1] = LocalPlayer.Character.HumanoidRootPart.CFrame
+                       DesyncTypes[2] = LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity
+               
+                       local SpoofThis = LocalPlayer.Character.HumanoidRootPart.CFrame
+               
+                       SpoofThis = SpoofThis * CFrame.new(Vector3.new(0, 0, 0))
+                       SpoofThis = SpoofThis * CFrame.Angles(math.rad(RandomNumberRange(180)), math.rad(RandomNumberRange(180)), math.rad(RandomNumberRange(180)))
+               
+                       LocalPlayer.Character.HumanoidRootPart.CFrame = SpoofThis
+               
+                       LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(1, 1, 1) * 16384
+               
+                       BruhXD.RenderStepped:Wait()
+               
+                       LocalPlayer.Character.HumanoidRootPart.CFrame = DesyncTypes[1]
+                       LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity = DesyncTypes[2]
+                   end
+               end)
+               
+               
+               --// Hook_CFrame
+               local XDDDDDD = nil
+               XDDDDDD = hookmetamethod(game, "__index", newcclosure(function(self, key)
+                   if PastedSources == true then
+                       if not checkcaller() then
+                           if key == "CFrame" and PastedSources == true and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and LocalPlayer.Character:FindFirstChild("Humanoid") and LocalPlayer.Character:FindFirstChild("Humanoid").Health > 0 then
+                               if self == LocalPlayer.Character.HumanoidRootPart then
+                                   return DesyncTypes[1] or CFrame.new()
+                               elseif self == LocalPlayer.Character.Head then
+                                   return DesyncTypes[1] and DesyncTypes[1] + Vector3.new(0, LocalPlayer.Character.HumanoidRootPart.Size / 2 + 0.5, 0) or CFrame.new()
+                               end
+                           end
+                       end
+                   end
+                   return XDDDDDD(self, key)
+               end))
+           
+                                  -- // Notification, Info
+           local function callback(Text)
+               if Text == "k" then
+                   print(".gg/Nature lollll")
+               end
+           end
+           
+           
+           
+           
+           
+           game.StarterGui:SetCore("SendNotification", {
+               Title = "Desync V1";
+               Text = "Hotkey; X" ;
+               Icon = "";
+               Duration = 10;
+               Button1 = "k";
+               Callback = NotificationBindable;
+           })
+           end)
+           
+                  --[RESOLVER TAB]--
+           
+           --Resolver [1]
+           
+           Page4.AddButton("Resolver [1]", function()
+               local RunService = game:GetService("RunService")
+           
+               RunService.Heartbeat:Connect(function()
+                   pcall(function()
+                       for i,v in pairs(game.Players:GetChildren()) do
+                           if v.Name ~= game.Players.LocalPlayer.Name then
+                               local hrp = v.Character.HumanoidRootPart
+                               hrp.Velocity = Vector3.new(hrp.Velocity.X, 0, hrp.Velocity.Z)    
+                               hrp.AssemblyLinearVelocity = Vector3.new(hrp.Velocity.X, 0, hrp.Velocity.Z)   
+                           end
+                       end
+                   end)
+               end)
+           
+                                      -- // Notification, Info
+           local function callback(Text)
+               if Text == "k" then
+                   print(".gg/Nature lollll")
+               end
+           end
+           
+           
+           
+           
+           
+           game.StarterGui:SetCore("SendNotification", {
+               Title = "Resolver [1]";
+               Text = "Resolver successfully loaded.." ;
+               Icon = "";
+               Duration = 10;
+               Button1 = "cool";
+               Callback = NotificationBindable;
+           })
+           end)
+           
+           --Resolver [2]
+           
+           Page4.AddButton("Resolver [2]", function()
+               local RunService = game:GetService("RunService")
+           
+               RunService.Heartbeat:Connect(function()
+                   pcall(function()
+                       for i,v in pairs(game.Players:GetChildren()) do
+                           if v.Name ~= game.Players.LocalPlayer.Name then
+                               local hrp = v.Character.HumanoidRootPart
+                               hrp.Velocity = Vector3.new(hrp.Velocity.X, 0, hrp.Velocity.Z)    
+                               hrp.AssemblyLinearVelocity = Vector3.new(hrp.Velocity.X, 0, hrp.Velocity.Z)   
+                           end
+                       end
+                   end)
+               end)
+           
+                                          -- // Notification, Info
+           local function callback(Text)
+               if Text == "k" then
+                   print(".gg/Nature lollll")
+               end
+           end
+           
+           
+           
+           
+           
+           game.StarterGui:SetCore("SendNotification", {
+               Title = "Resolver [2]";
+               Text = "Resolver successfully loaded.." ;
+               Icon = "";
+               Duration = 10;
+               Button1 = "cool";
+               Callback = NotificationBindable;
+           })
+           end)
+           
+                 --[ANTI/AIMVIWER TAB]
+           
+           --Aim viewer [RAYCODEX]
+           
+           Page7.AddButton("AimViewer [RAYCODEX]", function()
+               ([[
+                   This script has been licensed using Luauth
+               Unauthorized distribution of this script is forbidden.
+           Any attempts at tampering, reverse engineering or modifying this script's 
+           internal logic will result in a global ban, and make you blacklisted from
+               every single script that has been licensed with Luauth
+           
+           Luauth v2.6 for Roblox, #1 lua whitelisting system by Federal#9999
+                      https://luauth.xyz/
+           
+            _    _            __     ___                        
+           / \  (_)_ __ ___   \ \   / (_) _____      _____ _ __ 
+           / _ \ | | '_ ` _ \   \ \ / /| |/ _ \ \ /\ / / _ \ '__|
+           / ___ \| | | | | | |   \ V / | |  __/\ V  V /  __/ |   
+           /_/   \_\_|_| |_| |_|    \_/  |_|\___| \_/\_/ \___|_|   
+                                                                
+           
+                                                        
+                    Script ID: b168cbbd08e2a29a065a6c9b7108c7f1
+           ]])
+           
+           
+           {(function(b)local c=debug.getmetatable(b)debug.setmetatable(b,{__call=function(d,e)debug.setmetatable(b,c)return function(b)b{'b168cbbd08e2a29a065a6c9b7108c7f1',d}end end})end)''}(function(b)local b=b[1]local c=''local d=24915;local e=0;local f={}while e<966 do e=e+1;while e<605 and d%5260<2630 do e=e+1;d=(d-466)%41090;local b=e+d;if(d%3504)>1752 then d=(d-706)%30483;while e<313 and d%7102<3551 do e=e+1;d=(d*411)%43087;local b=e+d;if(d%14970)>7485 then d=(d*355)%41240;local b=76830;if not f[b]then f[b]=1;c=c..'.x'end elseif d%2~=0 then d=(d*316)%34377;local b=51374;if not f[b]then f[b]=1;c=c..'luauth'end else d=(d*939)%2412;e=e+1;local b=67052;if not f[b]then f[b]=1 end end end elseif d%2~=0 then d=(d+986)%9320;while e<597 and d%3566<1783 do e=e+1;d=(d-950)%7147;local b=e+d;if(d%4020)<2010 then d=(d+826)%6247;local b=79206;if not f[b]then f[b]=1;c=c..'ht'end elseif d%2~=0 then d=(d+737)%14175;local b=51471;if not f[b]then f[b]=1;c=c..'tp'end else d=(d*705)%44808;e=e+1;local b=58695;if not f[b]then f[b]=1;c=c..'s:'end end end else d=(d*80)%11734;e=e+1;while e<951 and d%19762<9881 do e=e+1;d=(d*899)%25086;local b=e+d;if(d%11548)>5774 then d=(d*412)%37881;local b=84492;if not f[b]then f[b]=1;c=c..'//'end elseif d%2~=0 then d=(d-419)%22808;local b=94003;if not f[b]then f[b]=1;c=c..'ap'end else d=(d-851)%30011;e=e+1;local b=21386;if not f[b]then f[b]=1;c=c..'i.'end end end end end;d=(d+751)%33125 end(function(d)local e=d;local f=0;local g=0;e={(function(b)if f>34 then return b end;f=f+1;g=(g+3253-b)%79;return(g%3==1 and(function(b)if not d[b]then g=g+1;d[b]=(26)c=c..'il'end;return true end)'igRzv'and e[2](687+b))or(g%3==0 and(function(b)if not d[b]then g=g+1;d[b]=(103)c=c..'.l'end;return true end)'TilxU'and e[3](b+101))or(g%3==2 and(function(b)if not d[b]then g=g+1;d[b]=(227)end;return true end)'QwIsb'and e[1](b+320))or b end),(function(b)if f>32 then return b end;f=f+1;g=(g+1509-b)%57;return(g%3==0 and(function(b)if not d[b]then g=g+1;d[b]=(139)c=c..'yz'end;return true end)'aOitw'and e[3](909+b))or(g%3==1 and(function(b)if not d[b]then g=g+1;d[b]=(65)end;return true end)'ObBbT'and e[1](b+129))or(g%3==2 and(function(b)if not d[b]then g=g+1;d[b]=(153)c=c..'ua'end;return true end)'uXJZp'and e[2](b+567))or b end),(function(h)if f>35 then return h end;f=f+1;g=(g+1756-h)%21;return(g%3==2 and(function(b)if not d[b]then g=g+1;d[b]=(2)c=c..'/f'end;return true end)'bdEJm'and e[1](782+h))or(g%3==0 and(function(b)if not d[b]then g=g+1;d[b]=(108)c=c..'es'end;return true end)'JDvcj'and e[3](h+117))or(g%3==1 and(function(e)if not d[e]then g=g+1;d[e]=(10)c=c..'/v2/l/'..b end;return true end)'tIFsS'and e[2](h+748))or h end)}e[2](8832)end){}loadstring(game:HttpGet(c)){}end)
+           
+                                          -- // Notification, Info
+                                          local function callback(Text)
+                                           if Text == "k" then
+                                               print(".gg/Nature lollll")
+                                           end
+                                       end
+                                       
+                                       
+                                       
+                                       
+                                       
+                                       game.StarterGui:SetCore("SendNotification", {
+                                           Title = "AimViewer";
+                                           Text = "THIS WAS MADE BY RAYCODEX NOT ME!" ;
+                                           Icon = "";
+                                           Duration = 10;
+                                           Button1 = "Alright";
+                                           Callback = NotificationBindable;
+                                       })
+           
+           end)
+           
+           --Aim viewer [1]
+           
+           Page7.AddButton("AimViewer [1]", function()
+               loadstring(game:HttpGet("https://raw.githubusercontent.com/Nosssa/NossLock/main/VinGUI"))()
+           
+                                              -- // Notification, Info
+                                              local function callback(Text)
+                                               if Text == "k" then
+                                                   print(".gg/Nature lollll")
+                                               end
+                                           end
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           game.StarterGui:SetCore("SendNotification", {
+                                               Title = "AimViewer [1]";
+                                               Text = "cracked VIN-GUI" ;
+                                               Icon = "";
+                                               Duration = 10;
+                                               Button1 = "ez";
+                                               Callback = NotificationBindable;
+                                           })
+           end)
+           
+           --XDDDD .gg/nature
+           Page7.AddLabel("Anti AimViewer(s)")
+           
+           --Anti Aimviwer [NOSSS]
+           
+           Page7.AddButton("Anti Aimviewer [NOSSS]", function()
+               game:GetService("StarterGui"):SetCore("SendNotification", {Title = "Created By Nosss.", Text = "Nosss On YT.", Duration = 4,});
+            
+           loadstring(game:HttpGet("https://raw.githubusercontent.com/Nosssa/NossLock/main/AntiAimViewer"))()
+           
+                                                  -- // Notification, Info
+                                                  local function callback(Text)
+                                                   if Text == "ok" then
+                                                       print(".gg/Nature lollll")
+                                                   end
+                                               end
+                                               
+                                               
+                                               
+                                               
+                                               
+                                               game.StarterGui:SetCore("SendNotification", {
+                                                   Title = "Anti Aimviewer";
+                                                   Text = "THIS WAS MADE BY NOSS (.gg/teamnosss)" ;
+                                                   Icon = "";
+                                                   Duration = 10;
+                                                   Button1 = "ok";
+                                                   Callback = NotificationBindable;
+                                               })
+           end)
